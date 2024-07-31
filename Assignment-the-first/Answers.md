@@ -16,10 +16,55 @@
     3. **YOUR ANSWER HERE**
     
 ## Part 2
-1. Define the problem
-2. Describe output
+1. Define the problem: de-multiplex files and report index-hopping
+2. Describe output: 52 files
+```bash
+unknown_R1.fastq
+unknown_R2.fastq
+hopped_R1.fastq
+hopped_R2.fastq
+knownindex1_R1.fastq
+knownindex1_R2.fastq
+knownindex2_R1.fastq
+knownindex2_R2.fastq
+...
+knownindex24_R1.fastq
+knownindex24_R2.fastq
+```
+
 3. Upload your [4 input FASTQ files](../TEST-input_FASTQ) and your [>=6 expected output FASTQ files](../TEST-output_FASTQ).
 4. Pseudocode
+```python
+'''
+covert matched index textfile to set
+
+open all 4 input files (using 'a')
+  while True:
+    read 4 lines (1 record) from all files
+    if line == "": break
+
+    reverse compliment index 2
+    edit all the headers w/ index 1 seq-index2 seq
+
+    if index 1 & index 2 not in set of 24 known index OR average q score is < q score threshold
+      unknown +=1
+      write R1 record to unknown_R1.fq
+      write R4 record to unknown_R2.fq
+      continue
+    else:
+      if index 1 == index 2:
+        matched_dict(index1-index2) += 1
+        write R1 record to index_R1.fq
+        write R4 record to index_R2.fq
+        continue
+      else:
+        hopped_dict(index1-index2) += 1
+        write R1 record to hopped_R1.fq
+        write R4 record to hopped_R2.fq
+        continue
+'''
+```
+
 5. High level functions. For each function, be sure to include:
     1. Description/doc string
     2. Function headers (name and parameters)
