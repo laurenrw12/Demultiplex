@@ -1,7 +1,7 @@
 # Assignment the First
 
 ## Part 1
-1. Be sure to upload your Python script. Provide a link to it here:
+1. Be sure to upload your Python script. Provide a link to it here: [meandist.py](meandist.py)
 
 | File name | label | Read length | Phred encoding |
 |---|---|---|---|
@@ -12,8 +12,31 @@
 
 2. Per-base NT distribution
     1. Use markdown to insert your 4 histograms here.
-    2. **YOUR ANSWER HERE**
-    3. **YOUR ANSWER HERE**
+    
+    RUN 1: 
+    <img src="R1_hist.png">
+
+    RUN 2: 
+    <img src="R2_hist.png">
+
+    RUN 3:
+    <img src="R3_hist.png">
+
+    RUN 4: 
+    <img src="R4_hist.png">
+
+    2. What is a good quality score cutoff for index reads and biological read pairs to utilize for sample identification and downstream analysis, respectively? Justify your answer. 
+
+    **For index reads, 20 is an appropriate quality score cutoff because that will give us a 99% confidence level that we have the correct read for that base.**
+    **For biological reads, we don't need a quality score cutoff because next we will align to a genome, so the aligner will take care/not align low quality reads.**
+
+    3. How many indexes have undetermined (N) base calls? (Utilize your command line tool knowledge. Submit the command(s) you used. CHALLENGE: use a one-line command)
+
+    **$ zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R2_001.fastq.gz | sed -n '2~4p'| grep "N" | wc -l**
+    **3976613**
+
+    **$ zcat /projects/bgmp/shared/2017_sequencing/1294_S1_L008_R3_001.fastq.gz | sed -n '2~4p'| grep "N" | wc -l**
+    **3328051**
     
 ## Part 2
 1. Define the problem: de-multiplex files and report index-hopping
@@ -33,6 +56,7 @@ knownindex24_R2.fastq
 ```
 
 3. Upload your [4 input FASTQ files](../TEST-input_FASTQ) and your [>=6 expected output FASTQ files](../TEST-output_FASTQ).
+
 4. Pseudocode
 ```python
 '''
@@ -70,3 +94,25 @@ open all 4 input files (using 'a')
     2. Function headers (name and parameters)
     3. Test examples for individual functions
     4. Return statement
+
+```python
+def reverse_compliment(sequence: str) -> str:
+    '''Takes a DNA sequence and returns the reverse compliment of that sequence.'''
+    return rev_complimented_sequence
+#Input: CAT
+#Expected output: ATG
+```
+```python
+def edit_header(R1_header: str, R4_header: str, R2_sequence: str, R3_sequence: str) -> str, str:
+    '''Takes 2 headers and 2 indexes, adds the indexes to both headers, and returns the new headers.'''
+    return edited_R1header, edited_R4header
+#Input: @K00337:83:HJKJNBBXX:8:1101:1265:1191 1:N:0:1, @K00337:83:HJKJNBBXX:8:1101:1265:1191 4:N:0:1, NCTTCGAC, NTCGAAGA
+#Expected output: @K00337:83:HJKJNBBXX:8:1101:1265:1191 1:N:0:1 NCTTCGAC-NTCGAAGA, @K00337:83:HJKJNBBXX:8:1101:1265:1191 4:N:0:1 NCTTCGAC-NTCGAAGA
+```
+```python
+def check_qscore(R2_qscores: str, R3_qscores: str, qscore_threshold: int) -> bool:
+    '''Takes the qscores of both index files, converts them, averages them, and compares them to the threshold. Returns True or False.'''
+    return bool
+#Input: EEEEEEE, FFFFFFF, 32
+#Expected output: False
+```
