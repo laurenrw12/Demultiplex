@@ -30,10 +30,10 @@ with gzip.open(f,"rt") as f:
     for line in f:
         i+=1
         #line = str(line)
-        line = line.strip('\n')
+        line = line.strip('\n') # type: ignore
         if (i-1)%4 == 3:
             for j in range(len(line)): 
-                mean_qscores[j] += bioinfo.convert_phred(line[j])
+                mean_qscores[j] += bioinfo.convert_phred(line[j]) # type: ignore
     lines = i
 
 num_records = int(lines/4)

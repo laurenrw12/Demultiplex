@@ -85,25 +85,47 @@ Looked over classmates puedocode:
 Write your code to demultiplex the samples. Be sure to:
 
 - Incorporate feedback from peer code reviews
-- Utilize appropriate functions (perhaps you want to `import bioinfo`???)
+    - one big if statement with elif statements instead of many nested if statements
+
+- Utilize appropriate functions 
+    - import bioinfo, argparse, gzip 
+
 - Sufficiently comment your code/use docstrings/use type annotations on functions
 - Use unit tests on functions/entire algorithm to ensure it works properly
 - Create a useful report for the end user of your code
 - Use `argparse` to "generalize" your code
 - Be mindful of "simple" things you can do to optimize your code
-- Follow the specifications laid out in [Assignment the First](../Assignment-the-first#part-2--develop-an-algorithm-to-de-multiplex-the-samples) for the code
-    - Unclear? Ask!
-
-Modules that are fair game to import:
-- bioinfo
-- argparse
-- math
-- gzip
-- numpy
-- matplotlib
-- itertools
+- Follow the specifications laid out in [Assignment the First](../Assignment-the-first#part-2--develop-an-algorithm-to-de-multiplex-the-samples) for the code. Unclear? Ask!
 
 Final work will be submitted on [GitHub in the Assignment-the-Third folder](.). Make sure your folder is well organized and final output is clearly labeled/summarized (a markdown file would be much appreciated!!). Use your code to demultiplex the samples and report:
 - Percentage of reads from each sample
 - Overall amount of index swapping
 - Any figures/any other relevant data your code output
+
+### 08/06/24 Notes
+- 
+
+### Final Output Statistics
+#### Output for Q-score Threshold of 20:
+Total Number of Reads: 363246735
+
+Amount of Unknown Reads: 31828861\
+Percentage of Unknown Reads: 8.762325420488638%
+
+Amount of Matched Reads: 330738415\
+Percentage of Matched Reads: 91.05062293264659%
+
+Amount of Hopped Reads: 679459\
+Percentage of Hopped Reads: 0.1870516468647681%
+
+#### Output for Q-score Threshold of 30:
+Total Number of Reads: 363246735
+
+Amount of Unknown Reads: 57748853\
+Percentage of Unknown Reads: 15.897968910856141%
+
+Amount of Matched Reads: 304980270\
+Percentage of Matched Reads: 83.95953510772782%
+
+Amount of Hopped Reads: 517612\
+Percentage of Hopped Reads: 0.1424959814160477%
